@@ -1,16 +1,26 @@
 import ReactDOM from 'react-dom';
-import { Canvas } from '@react-three/fiber';
 import './index.css';
+import * as React from 'react';
+import { Canvas } from '@react-three/fiber';
+import * as THREE from 'three';
+import { OrbitControls, OrthographicCamera } from '@react-three/drei';
 
 function App() {
   return (
-    <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}>
-      <ambientLight intensity={0.1} />
-      <directionalLight color="red" position={[0, 0, 5]} />
-      <mesh>
-        <boxGeometry args={[2, 2, 2]} />
-        <meshStandardMaterial />
+    <Canvas>
+      <OrthographicCamera
+        makeDefault
+        position={[0, 0, 10]}
+        zoom={5}
+        near={-200}
+        far={4000}
+      />
+
+      <mesh position={[2, -8, 2]} rotation={[Math.PI * 0.5, 0, 0]}>
+        <planeGeometry args={[200, 200, 75, 75]} />
+        <meshBasicMaterial wireframe color="white" side={THREE.DoubleSide} />
       </mesh>
+      <OrbitControls />
     </Canvas>
   );
 }
