@@ -12,9 +12,9 @@ import { useControls } from 'leva';
 
 const PerspectiveCam = () => {
   const { camX, camY, camZ } = useControls('perspective camera', {
-    camX: { value: -20, min: -50, max: 50, step: 5 },
-    camY: { value: 10, min: -50, max: 50, step: 5 },
-    camZ: { value: 0, min: -50, max: 50, step: 5 },
+    camX: { value: -10, min: -50, max: 50, step: 5 },
+    camY: { value: 5, min: -50, max: 50, step: 5 },
+    camZ: { value: -5, min: -50, max: 50, step: 5 },
   });
 
   return <PerspectiveCamera makeDefault position={[camX, camY, camZ]} />;
