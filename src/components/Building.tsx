@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 
-import { Box } from '@react-three/drei';
 import { MeshProps } from '@react-three/fiber';
 
 interface BuildingProps extends MeshProps {
@@ -10,9 +9,10 @@ const lineColor = '#373030';
 
 const Building = ({ position, storeys = 1 }: BuildingProps) => {
   return (
-    <Box position={position}>
+    <mesh position={position}>
+      <boxGeometry />
       <meshBasicMaterial wireframe color={lineColor} side={THREE.DoubleSide} />
-    </Box>
+    </mesh>
   );
 };
 

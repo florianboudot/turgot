@@ -1,3 +1,5 @@
+// import * as THREE from 'three';
+
 import { OrbitControls } from '@react-three/drei';
 
 const Controls = () => {
