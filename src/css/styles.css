@@ -6,7 +6,20 @@ body {
 }
 #root {
   height: 100%;
-  background: darkslategrey;
+  background: black;
+}
+#background {
+  position: fixed;
+  top: -40%;
+  right: 17%;
+  filter: invert(1);
+  height: 100%;
+  width: 2874px;
+  height: 1822px;
+  background-image: url('../../public/background/plan.jpg');
+  background-position: 99% 40%;
+  background-repeat: no-repeat;
+  opacity: 0.4;
 }
 body {
   margin: 0;
