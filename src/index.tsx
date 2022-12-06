@@ -1,8 +1,9 @@
-import './index.css';
+import './css/styles.css';
 
 import { Canvas, useLoader } from '@react-three/fiber';
-import { DirectionalLight, DirectionalLightHelper } from 'three';
+import { DirectionalLight, DirectionalLightHelper, DoubleSide } from 'three';
 import {
+  Edges,
   OrthographicCamera,
   PerspectiveCamera,
   useHelper,
@@ -14,24 +15,24 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createRoot } from 'react-dom/client';
 import { useControls } from 'leva';
 
-// const PerspectiveCam = () => {
-//   const { camX, camY, camZ, fov } = useControls('perspective camera', {
-//     camX: { value: -10, min: -50, max: 50, step: 5 },
-//     camY: { value: 5, min: -50, max: 50, step: 5 },
-//     camZ: { value: -5, min: -50, max: 50, step: 5 },
-//     fov: { value: 70, step: 1 },
-//   });
+const PerspectiveCam = () => {
+  const { camX, camY, camZ, fov } = useControls('perspective camera', {
+    camX: { value: -10, min: -50, max: 50, step: 5 },
+    camY: { value: 5, min: -50, max: 50, step: 5 },
+    camZ: { value: -5, min: -50, max: 50, step: 5 },
+    fov: { value: 70, step: 1 },
+  });
 
-//   return (
-//     <PerspectiveCamera makeDefault position={[camX, camY, camZ]} fov={fov} />
-//   );
-// };
+  return (
+    <PerspectiveCamera makeDefault position={[camX, camY, camZ]} fov={fov} />
+  );
+};
 
 const OrthoCam = () => {
   const { camX, camY, camZ, zoom } = useControls('camera', {
-    camX: { value: 1, min: -50, max: 50, step: 1 },
-    camY: { value: 1, min: -50, max: 50, step: 1 },
-    camZ: { value: 2, min: -50, max: 50, step: 1 },
+    camX: { value: 12, min: -50, max: 50, step: 1 },
+    camY: { value: 15, min: -50, max: 50, step: 1 },
+    camZ: { value: 16, min: -50, max: 50, step: 1 },
     zoom: { value: 50, min: 0, max: 50, step: 1 },
   });
 
@@ -41,7 +42,7 @@ const OrthoCam = () => {
       position={[camX, camY, camZ]}
       zoom={zoom}
       near={-200}
-      far={4000}
+      far={1000}
     />
   );
 };
@@ -65,7 +66,7 @@ const Light = () => {
 };
 
 function App() {
-  const model = useLoader(GLTFLoader, './models/pont-de-la-tournelle.glb');
+  const { nodes } = useLoader(GLTFLoader, './models/pont-de-la-tournelle.gltf');
 
   return (
     <Canvas>
@@ -74,9 +75,13 @@ function App() {
       <Light />
       <axesHelper />
 
-      {/* <PivotControls depthTest={false} anchor={[-1, -1, -1]} scale={0.75}> */}
-      <primitive object={model.scene} scale={10} />
-      {/* </PivotControls> */}
+      <mesh geometry={nodes.pont.geometry}>
+        <meshStandardMaterial transparent side={DoubleSide} />
+        <Edges
+          threshold={15} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
+          color="white"
+        />
+      </mesh>
 
       <Controls />
     </Canvas>
