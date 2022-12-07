@@ -3,10 +3,10 @@ import { useControls } from 'leva'
 
 const OrthoCam = () => {
   const { camX, camY, camZ, zoom } = useControls('camera', {
-    camX: { value: 12, min: -50, max: 50, step: 1 },
-    camY: { value: 11, min: -50, max: 50, step: 1 },
-    camZ: { value: 5, min: -50, max: 50, step: 1 },
-    zoom: { value: 13, min: 0, max: 50, step: 1 },
+    camX: { value: 12, min: 0, max: 20, step: 0.1 },
+    camY: { value: 12.6, min: 0, max: 20, step: 0.1 },
+    camZ: { value: 5.3, min: 0, max: 20, step: 0.1 },
+    zoom: { value: 13, min: 0, max: 50, step: 0.1 },
   })
 
   return (
