@@ -31,9 +31,9 @@ const PerspectiveCam = () => {
 const OrthoCam = () => {
   const { camX, camY, camZ, zoom } = useControls('camera', {
     camX: { value: 12, min: -50, max: 50, step: 1 },
-    camY: { value: 15, min: -50, max: 50, step: 1 },
-    camZ: { value: 16, min: -50, max: 50, step: 1 },
-    zoom: { value: 50, min: 0, max: 50, step: 1 },
+    camY: { value: 11, min: -50, max: 50, step: 1 },
+    camZ: { value: 5, min: -50, max: 50, step: 1 },
+    zoom: { value: 13, min: 0, max: 50, step: 1 },
   });
 
   return (
@@ -51,9 +51,9 @@ const Light = () => {
   const directionalLight = useRef<DirectionalLight>(null!);
   useHelper(directionalLight, DirectionalLightHelper, 1);
   const { x, y, z } = useControls('directionaLight', {
-    x: 1,
-    y: 1,
-    z: 2,
+    x: 2.3,
+    y: 8,
+    z: -16.5,
   });
 
   return (
@@ -75,12 +75,8 @@ function App() {
       <Light />
       <axesHelper />
 
-      <mesh geometry={nodes.pont.geometry}>
+      <mesh geometry={nodes.pont.geometry} scale={1} rotation-y={Math.PI}>
         <meshStandardMaterial transparent side={DoubleSide} />
-        <Edges
-          threshold={15} // Display edges only when the angle between two faces exceeds this value (default=15 degrees)
-          color="white"
-        />
       </mesh>
 
       <Controls />
