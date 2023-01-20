@@ -6,7 +6,7 @@ import { useGLTF } from '@react-three/drei'
 interface MyGLTF extends GLTF {
   nodes: {
     /* Manually typed meshes names */
-    pont: Mesh
+    terrain: Mesh
   }
   materials: {
     /* Manually typed meshes names */
@@ -14,9 +14,10 @@ interface MyGLTF extends GLTF {
   }
 }
 
-const PontDeLaTournelle = () => {
-  const { nodes } = useGLTF('./models/pont-de-la-tournelle.gltf') as unknown as MyGLTF
-  return <mesh geometry={nodes.pont.geometry} scale={1} material={nodes.pont.material}></mesh>
+const Terrain = () => {
+  const { nodes } = useGLTF('./models/terrain.gltf') as unknown as MyGLTF
+
+  return <mesh geometry={nodes.terrain.geometry} material={nodes.terrain.material} scale={1}></mesh>
 }
 
-export default PontDeLaTournelle
+export default Terrain
